@@ -3,7 +3,7 @@ import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import replace from 'rollup-plugin-replace';
 
-const name = 'downloadByUrl';
+const name = 'saveFileByUrl';
 const banner = `/*!
 * ${process.env.npm_package_name} v${process.env.npm_package_version}
 */`;

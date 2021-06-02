@@ -53,7 +53,7 @@ export function getBlobByUrl(url: string, detectFileName = false) {
     },
   );
 }
-export default async function downloadByUrl(url: string, filename?: string) {
+export default async function saveFileByUrl(url: string, filename?: string) {
   const { blob, filename: blobName } = await getBlobByUrl(url, !filename);
   return saveBlob(blob, filename || blobName);
 }

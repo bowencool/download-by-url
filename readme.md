@@ -18,9 +18,9 @@ yarn add save-file-by-url
 ```
 
 ```ts
-import downloadByUrl from 'save-file-by-url';
+import saveFileByUrl from 'save-file-by-url';
 
-downloadByUrl(
+saveFileByUrl(
   'https://dummyimage.com/100x100/894FC4/FFF.png&text=hello',
   'hello.png',
 );

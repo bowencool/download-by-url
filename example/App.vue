@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import downloadByUrl from '../src';
+import saveFileByUrl from '../src';
 import { defineComponent, ref } from 'vue';
 import Download from './download.vue';
 
@@ -37,10 +37,10 @@ export default defineComponent({
     return {
       url,
       onDownloadHTML() {
-        downloadByUrl(window.location.href);
+        saveFileByUrl(window.location.href);
       },
       customDownload() {
-        downloadByUrl(url.value);
+        saveFileByUrl(url.value);
       },
     };
   },

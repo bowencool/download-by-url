@@ -1,5 +1,5 @@
 <script>
-import downloadByUrl  from '../src';
+import saveFileByUrl  from '../src';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -11,7 +11,7 @@ export default defineComponent({
     return {
       onDownload() {
         if (props.href) {
-          downloadByUrl(props.href, props.download);
+          saveFileByUrl(props.href, props.download);
         }
       },
     };
