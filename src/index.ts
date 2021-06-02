@@ -16,25 +16,31 @@ export function getBlobByUrl(url: string, detectFileName = false) {
           const contentDispostion = xhr.getResponseHeader(
             'content-disposition',
           );
+          console.log(contentDispostion);
           if (
             contentDispostion &&
             contentDispostion.match(/filename\*?=(utf-8'')?("?)([^"]*)\2$/)
           ) {
             filename = decodeURIComponent(RegExp.$3);
-            console.log(contentDispostion);
           } else {
             const contentType = xhr.getResponseHeader('Content-Type');
             if (contentType && contentType.match(/\/(\w+)/)) {
               let ext = RegExp.$1;
-              const urlsegments = url.split('/');
-              for (let i = urlsegments.length - 1; i >= 0; i--) {
-                const pathLastName = urlsegments[i];
+              const URLObject = new URL(url);
+              const pathnameSegments = URLObject.pathname.split('/');
+              for (let i = pathnameSegments.length - 1; i >= 0; i--) {
+                const pathLastName = pathnameSegments[i];
                 if (pathLastName && typeof pathLastName === 'string') {
-                  filename = `${pathLastName}.${ext}`;
+                  filename = pathLastName;
+                  console.log(URLObject, pathnameSegments, pathLastName);
                   break;
                 }
               }
-              if (!filename) filename = `anonymous.${ext}`;
+              if (!filename) {
+                filename = `${URLObject.host}.${ext}`;
+              } else if (!filename.endsWith(`.${ext}`)) {
+                filename += `.${ext}`;
+              }
               console.log(contentType);
             }
           }

@@ -4,13 +4,16 @@
     <button @click="onDownloadHTML">下载 HTML</button>
     ｜
     <Download
-      href="https://dummyimage.com/100x100/894FC4/FFF.png&text=hello"
-      download="hello.png"
+      href="https://dummyimage.com/100x100/894FC4/FFF.png?text=hello"
       >下载图片</Download
     >
     ｜
-    <Download href="http://httpbin.org/get" download="json.json"
-      >下载json</Download
+    <Download href="//httpbin.org/get" download="json.json">下载json</Download>
+    ｜
+    <Download
+      href="https://raw.githubusercontent.com/bowencool/download-by-url/main/example/App.vue"
+      download="App.vue"
+      >下载此代码</Download
     >
   </fieldset>
 
