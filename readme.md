@@ -1,17 +1,21 @@
 # save-file-by-url
 
-> Download file by url in browser.
 > 在浏览器中通过 url 下载文件。
+> Download file by url in browser.
 > [Live Demo](https://bowencool.github.io/download-by-url/)
 
 ## Why?
 
-- 原生 a 标签*跨域*下载时不支持重命名
-- 点击的元素不是 a 标签
-- 有时下载逻辑并不是由用户点击事件触发的，需要在业务逻辑中处理
-- 浏览器迷惑行为之：当前页打开了 fileUrl，而不是保存到本地
+- 原生 a 标签*跨域*下载时不支持重命名。
+  Native `a` tag do not support renaming when *crossing origin*.
+- 点击的元素不是 a 标签。
+  The click eventTarget is not an `a` tag.
+- 下载逻辑并不是由用户点击事件触发的，需要在业务逻辑中处理。
+  The download logic is not triggered by user click events and needs to be handled in the business logic.
+- 浏览器迷惑行为之：当前页打开了 fileUrl，而不是保存到本地。
+  Browser confusion behavior: the current page has fileUrl open instead of saving to local.
 
-## 使用
+## Usage
 
 ```sh
 yarn add save-file-by-url
