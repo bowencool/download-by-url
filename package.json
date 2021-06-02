@@ -51,6 +51,6 @@
   ],
   "description": "Download file by url in browser",
   "author": "bowencool",
-  "name": "download-by-url",
+  "name": "save-file-by-url",
   "version": "0.1.0"
 }

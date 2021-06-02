@@ -1,4 +1,4 @@
-# download-by-url
+# save-file-by-url
 
 > Download file by url in browser.
 > 在浏览器中通过 url 下载文件。
@@ -14,11 +14,11 @@
 ## 使用
 
 ```sh
-yarn add download-by-url
+yarn add save-file-by-url
 ```
 
 ```ts
-import downloadByUrl from 'download-by-url';
+import downloadByUrl from 'save-file-by-url';
 
 downloadByUrl(
   'https://dummyimage.com/100x100/894FC4/FFF.png&text=hello',

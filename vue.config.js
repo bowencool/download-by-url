@@ -5,7 +5,7 @@ module.exports = {
   pages: {
     index: {
       entry: 'example/index.ts',
-      title: 'download-by-url'
+      title: 'save-file-by-url'
     },
   },
   configureWebpack: {
