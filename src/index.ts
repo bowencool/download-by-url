@@ -1,51 +1,72 @@
-export function getBlobByUrl(url: string, detectFileName = false) {
+export function getBlobByUrl(url: string | URL, detectFileName = false) {
   return new Promise(
     (resolve: (blob: { blob: Blob; filename: string }) => void, reject) => {
       const xhr = new XMLHttpRequest();
-
       xhr.open('GET', url, true);
-
       xhr.responseType = 'blob';
-
       xhr.onload = () => {
-        const blob = new Blob([xhr.response], {
-          type: 'application/octet-stream',
-        });
         let filename: string = '';
+        let contentType: string | null = null;
         if (detectFileName) {
+          // 尝试从 headers 里取
+          // let contentDispostion;
+          // try {
           const contentDispostion = xhr.getResponseHeader(
             'content-disposition',
           );
-          console.log(contentDispostion);
+          // } catch (error) {
+          //   contentDispostion = null;
+          // }
+          console.log('contentDispostion', contentDispostion);
           if (
             contentDispostion &&
             contentDispostion.match(/filename\*?=(utf-8'')?("?)([^"]*)\2$/)
           ) {
             filename = decodeURIComponent(RegExp.$3);
           } else {
-            const contentType = xhr.getResponseHeader('Content-Type');
-            if (contentType && contentType.match(/\/(\w+)/)) {
-              let ext = RegExp.$1;
-              const URLObject = new URL(url);
-              const pathnameSegments = URLObject.pathname.split('/');
-              for (let i = pathnameSegments.length - 1; i >= 0; i--) {
-                const pathLastName = pathnameSegments[i];
-                if (pathLastName && typeof pathLastName === 'string') {
-                  filename = pathLastName;
-                  console.log(URLObject, pathnameSegments, pathLastName);
-                  break;
-                }
+            // 尝试从 pathname 里取
+            let URLObject: URL | undefined;
+            if (url instanceof URL) {
+              URLObject = url;
+            } else if (typeof url === 'string') {
+              if (url.startsWith('//')) {
+                url = `${location.protocol}${url}`;
               }
-              if (!filename) {
-                filename = `${URLObject.host}.${ext}`;
-              } else if (!filename.endsWith(`.${ext}`)) {
-                filename += `.${ext}`;
+              URLObject = new URL(url);
+            }
+            if (!URLObject) {
+              throw new Error('no url');
+            }
+            const pathnameSegments = URLObject.pathname.split('/');
+            for (let i = pathnameSegments.length - 1; i >= 0; i--) {
+              const pathLastName = pathnameSegments[i];
+              if (pathLastName && typeof pathLastName === 'string') {
+                filename = pathLastName;
+                console.log('pathLastName', pathLastName, pathnameSegments);
+                break;
               }
-              console.log(contentType);
+            }
+
+            if (!filename) {
+              // fallback
+              filename = `${URLObject.host}`;
+            }
+
+            if (!filename.includes('.')) {
+              // 尝试从 content-type 里拼接
+              contentType = xhr.getResponseHeader('Content-Type');
+              console.log('contentType', contentType);
+              if (contentType && contentType.match(/\/(\w+)/)) {
+                let ext = RegExp.$1;
+                filename = `${filename}.${ext}`;
+              }
             }
           }
-          console.log(filename);
+          // console.log('filename', filename);
         }
+        const blob = new Blob([xhr.response], {
+          type: contentType || 'application/octet-stream',
+        });
         resolve({ blob, filename });
       };
       xhr.onerror = reject;

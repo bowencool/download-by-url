@@ -8,7 +8,7 @@
       >下载图片</Download
     >
     ｜
-    <Download href="//httpbin.org/get" download="json.json">下载json</Download>
+    <Download href="//httpbin.org/get">下载json</Download>
     ｜
     <Download
       href="https://raw.githubusercontent.com/bowencool/download-by-url/main/example/App.vue"
@@ -33,7 +33,7 @@ export default defineComponent({
   name: 'App',
   components: { Download },
   setup() {
-    const url = ref('');
+    const url = ref('https://cdn.mockuai.com/tms/template.xlsx');
     return {
       url,
       onDownloadHTML() {
