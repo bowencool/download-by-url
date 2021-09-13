@@ -2,19 +2,20 @@ import tsPlugin from 'rollup-plugin-typescript2';
 import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import replace from 'rollup-plugin-replace';
+import pkgJson from '../package.json'
 
 const name = 'saveFileByUrl';
 const banner = `/*!
-* ${process.env.npm_package_name} v${process.env.npm_package_version}
+* ${process.env.npm_package_name} v${pkgJson.version}
 */`;
-const input = process.env.npm_package_entry;
+const input = pkgJson.entry;
 
 const globals = {};
 const external = Object.keys(globals);
 
 const replacement = {
   'process.env.npm_package_version': JSON.stringify(
-    process.env.npm_package_version,
+    pkgJson.version,
   ),
   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 };
