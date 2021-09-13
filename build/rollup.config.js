@@ -1,79 +1,56 @@
 import tsPlugin from 'rollup-plugin-typescript2';
 import babel from '@rollup/plugin-babel';
-import { terser } from 'rollup-plugin-terser';
 import replace from 'rollup-plugin-replace';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import pkgJson from '../package.json'
 
 const name = 'saveFileByUrl';
 const banner = `/*!
-* ${process.env.npm_package_name} v${pkgJson.version}
+* ${process.env.npm_package_name} v${process.env.npm_package_version}
 */`;
+
 const input = pkgJson.entry;
 
-const globals = {};
-const external = Object.keys(globals);
+const babelConfig = {
+  babelHelpers: 'runtime',
+  skipPreflightCheck: true,
+  extensions: ['.js', '.ts'],
+};
+
+const deps = Object.keys(pkgJson.peerDependencies || {}).concat(
+  Object.keys(pkgJson.dependencies),
+);
 
 const replacement = {
-  'process.env.npm_package_version': JSON.stringify(
-    pkgJson.version,
-  ),
+  'process.env.npm_package_version': JSON.stringify(pkgJson.version),
   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 };
 
+/**
+ * @type {import('rollup').RollupOptions}
+ */
 export default [
   {
     input,
-    external,
+    external: deps,
     plugins: [
       replace(replacement),
-      tsPlugin(),
-      babel({ babelHelpers: 'bundled' }),
+      tsPlugin({
+        tsconfig: './tsconfig.build.json',
+      }),
+      babel(babelConfig),
+      nodeResolve(),
     ],
     output: [
-      {
-        format: 'umd',
-        banner,
-        name,
-        globals,
-        file: process.env.npm_package_main,
-      },
-      {
-        format: 'cjs',
-        banner,
-        name,
-        globals,
-        // exports: 'default',
-        file: process.env.npm_package_common,
-      },
       {
         format: 'esm',
         banner,
         name,
-        globals,
-        file: process.env.npm_package_module,
+        exports: 'auto',
+        dir: 'es',
+        preserveModules: true,
+        preserveModulesRoot: 'src',
       },
     ],
-  },
-  {
-    input,
-    external,
-    plugins: [
-      replace(replacement),
-      tsPlugin(),
-      babel({ babelHelpers: 'bundled' }),
-      terser({
-        output: {
-          comments: /^!/,
-        },
-      }),
-    ],
-    output: {
-      format: 'umd',
-      banner,
-      name,
-      globals,
-      sourcemap: true,
-      file: process.env.npm_package_unpkg,
-    },
   },
 ];
