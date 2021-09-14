@@ -43,7 +43,7 @@
   },
   "entry": "src/index.ts",
   "main": "es/index.js",
-  "module": "es/index.esm.js",
+  "module": "es/index.js",
   "types": "es/index.d.ts",
   "license": "MIT",
   "homepage": "https://github.com/bowencool/download-by-url",
