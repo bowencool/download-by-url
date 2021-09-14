@@ -42,12 +42,9 @@
     "vue": "^3.0.11"
   },
   "entry": "src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "unpkg": "dist/index.min.js",
-  "common": "dist/index.common.js",
-  "jsdelivr": "dist/index.min.js",
-  "types": "dist/index.d.ts",
+  "main": "es/index.js",
+  "module": "es/index.esm.js",
+  "types": "es/index.d.ts",
   "license": "MIT",
   "homepage": "https://github.com/bowencool/download-by-url",
   "keywords": [
