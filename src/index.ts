@@ -67,7 +67,7 @@ export function getBlobByUrl(url: string | URL, detectFileName = false) {
         const blob = new Blob([xhr.response], {
           type: contentType || 'application/octet-stream',
         });
-        resolve({ blob, filename: encodeURIComponent(filename) });
+        resolve({ blob, filename: decodeURIComponent(filename) });
       };
       xhr.onerror = reject;
       xhr.send();
