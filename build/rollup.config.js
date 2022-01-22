@@ -51,6 +51,15 @@ export default [
         preserveModules: true,
         preserveModulesRoot: 'src',
       },
+      {
+        format: 'cjs',
+        banner,
+        name,
+        exports: 'auto',
+        dir: 'cjs',
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+      },
     ],
   },
 ];

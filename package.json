@@ -54,11 +54,13 @@
     "blob",
     "url",
     "js",
+    "xhr",
+    "cross origin",
     "rename",
     "typescript",
     "javascript"
   ],
-  "description": "Download file by url in browser",
+  "description": "Download blob(file) by url, and save it.",
   "author": "bowencool",
   "name": "save-file-by-url",
   "version": "0.3.6"

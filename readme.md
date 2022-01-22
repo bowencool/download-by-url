@@ -31,3 +31,27 @@ saveFileByUrl(
   'hello.png',
 );
 ```
+
+## Api
+
+```ts
+/**
+ * @description Create an a element and click it.
+ */
+export declare function downloadByUrlLegacy(url: string, filename?: string): void;
+/**
+ * @description Download blob by javascript.
+ */
+export declare function getBlobByUrl(url: string | URL, detectFileName?: boolean): Promise<{
+    blob: Blob;
+    filename: string;
+}>;
+/**
+ * @description Save blob to local.
+ */
+export declare function saveBlob(blob: Blob, filename: string): void;
+/**
+ * @description Download blob(file) by url, and save it.
+ */
+export default function downloadByUrl(url: string | URL, filename?: string): Promise<void>;
+```
