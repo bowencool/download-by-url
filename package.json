@@ -16,7 +16,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "entry": "src/index.ts",
-  "main": "es/index.js",
+  "main": "cjs/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
   "files": [
