@@ -4,23 +4,22 @@
       普通 a 标签下载：不支持跨域重命名；甚至直接打开预览而不是下载
     </legend>
 
-    <a
-      href="https://dummyimage.com/300x300/92cbff/fff"
+    <a download="image.png" href="https://dummyimage.com/300x300/92cbff/fff"
       >图片</a
     >
     ｜
-    <a href="//httpbin.org/get">JSON</a>
+    <a download="t.json" href="//httpbin.org/get">JSON</a>
     ｜
     <a
-      href="https://wdzg-file-pre-cdn.mockuai.com/picture/open_file202109091739144850000165.6版本).pdf"
       download="aa.pdf"
+      href="https://wdzg-file-pre-cdn.mockuai.com/picture/open_file202109091739144850000165.6版本).pdf"
     >
       PDF
     </a>
     ｜
     <a
-      href="https://wdzg-file-pre-cdn.mockuai.com/picture/open_file202109131633158710000670.xlsx"
       download="aa.xlsx"
+      href="https://wdzg-file-pre-cdn.mockuai.com/picture/open_file202109131633158710000670.xlsx"
     >
       表格
     </a>
@@ -30,10 +29,7 @@
     <legend>使用此方法下载</legend>
     <button @click="onDownloadHTML">HTML</button>
     ｜
-    <Download
-      href="https://dummyimage.com/300x300/92cbff/fff"
-      >图片</Download
-    >
+    <Download href="https://dummyimage.com/300x300/92cbff/fff">图片</Download>
     ｜
     <Download
       href="https://wdzg-file-pre-cdn.mockuai.com/picture/open_file202109091739144850000165.6版本).pdf"
