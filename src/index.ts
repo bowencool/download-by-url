@@ -7,6 +7,8 @@ export function downloadByUrlLegacy(url: string, filename?: string) {
   const a = document.createElement('a');
   a.href = url;
   if (filename) a.download = filename;
+  a.style.position = 'fixed';
+  a.style.left = '-9999px';
   document.body.appendChild(a);
   a.click();
   a.remove();

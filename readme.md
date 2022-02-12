@@ -6,14 +6,14 @@
 
 ## Why?
 
+- 浏览器会尽可能直接预览（见 Demo），而不是保存到本地。
+  The browser will preview it as directly as possible (see Demo), rather than saving it locally.
 - 原生 a 标签**跨域**下载时不支持重命名。
   Native `a` tag do not support renaming when **crossing origin**.
 - 点击的元素不是 a 标签。
   The click eventTarget is not an `a` tag.
 - 下载逻辑并不是由用户点击事件触发的，需要在业务逻辑中处理。
   The download logic is not triggered by user click events and needs to be handled in the business logic.
-- 浏览器会尽可能直接预览（见 Demo），而不是保存到本地。
-  The browser will preview it as directly as possible (see Demo), rather than saving it locally.
 - a 标签会闪烁一下
   There will be a flash when using an `a` tag.
 
