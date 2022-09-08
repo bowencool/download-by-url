@@ -1,4 +1,4 @@
-# save-file-by-url
+# @bowencool/download-by-url
 
 > 在浏览器中通过 url 下载文件。
 > Download file by url in browser.
@@ -20,11 +20,11 @@
 ## Usage
 
 ```sh
-yarn add save-file-by-url
+yarn add @bowencool/download-by-url
 ```
 
 ```ts
-import saveFileByUrl from 'save-file-by-url';
+import saveFileByUrl from '@bowencool/download-by-url';
 
 saveFileByUrl(
   'https://dummyimage.com/100x100/894FC4/FFF.png&text=hello',

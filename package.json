@@ -62,6 +62,6 @@
   ],
   "description": "Download blob(file) by url, and save it.",
   "author": "bowencool",
-  "name": "save-file-by-url",
+  "name": "@bowencool/download-by-url",
   "version": "0.4.2"
 }

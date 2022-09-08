@@ -5,7 +5,7 @@ module.exports = {
   pages: {
     index: {
       entry: 'example/index.ts',
-      title: 'save-file-by-url'
+      title: '@bowencool/download-by-url'
     },
   },
   configureWebpack: {
