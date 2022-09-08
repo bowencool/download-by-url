@@ -1,4 +1,4 @@
-# @bowencool/download-by-url
+# download-by-url
 
 > 在浏览器中通过 url 下载文件。
 > Download file by url in browser.
@@ -24,9 +24,9 @@ yarn add @bowencool/download-by-url
 ```
 
 ```ts
-import saveFileByUrl from '@bowencool/download-by-url';
+import downloadByUrl from '@bowencool/download-by-url';
 
-saveFileByUrl(
+downloadByUrl(
   'https://dummyimage.com/100x100/894FC4/FFF.png&text=hello',
   'hello.png',
 );
@@ -38,20 +38,22 @@ saveFileByUrl(
 /**
  * @description Create an a element and click it.
  */
-export declare function downloadByUrlLegacy(url: string, filename?: string): void;
+declare function downloadByUrlLegacy(url: string, filename?: string): void;
 /**
  * @description Download blob by javascript.
  */
-export declare function getBlobByUrl(url: string | URL, detectFileName?: boolean): Promise<{
+declare function getBlobByUrl(url: string | URL, detectFileName?: boolean): Promise<{
     blob: Blob;
     filename: string;
 }>;
 /**
  * @description Save blob to local.
  */
-export declare function saveBlob(blob: Blob, filename: string): void;
+declare function saveBlob(blob: Blob, filename: string): void;
 /**
  * @description Download blob(file) by url, and save it.
  */
-export default function downloadByUrl(url: string | URL, filename?: string): Promise<void>;
+declare function downloadByUrl(url: string | URL, filename?: string): Promise<void>;
+export { downloadByUrl, saveBlob, downloadByUrlLegacy, getBlobByUrl };
+export default downloadByUrl;
 ```

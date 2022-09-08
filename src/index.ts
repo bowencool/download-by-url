@@ -3,7 +3,7 @@ import mime from 'mime-types';
 /**
  * @description Create an a element and click it.
  */
-export function downloadByUrlLegacy(url: string, filename?: string) {
+function downloadByUrlLegacy(url: string, filename?: string) {
   const a = document.createElement('a');
   a.href = url;
   if (filename) a.download = filename;
@@ -17,7 +17,7 @@ export function downloadByUrlLegacy(url: string, filename?: string) {
 /**
  * @description Download blob by javascript.
  */
-export function getBlobByUrl(url: string | URL, detectFileName = false) {
+function getBlobByUrl(url: string | URL, detectFileName = false) {
   return new Promise(
     (resolve: (blob: { blob: Blob; filename: string }) => void, reject) => {
       const xhr = new XMLHttpRequest();
@@ -95,7 +95,7 @@ export function getBlobByUrl(url: string | URL, detectFileName = false) {
 /**
  * @description Save blob to local.
  */
-export function saveBlob(blob: Blob, filename: string) {
+function saveBlob(blob: Blob, filename: string) {
   const blobUrl = window.URL.createObjectURL(blob);
   downloadByUrlLegacy(blobUrl, filename);
   window.URL.revokeObjectURL(blobUrl);
@@ -104,10 +104,7 @@ export function saveBlob(blob: Blob, filename: string) {
 /**
  * @description Download blob(file) by url, and save it.
  */
-export default async function downloadByUrl(
-  url: string | URL,
-  filename?: string,
-) {
+async function downloadByUrl(url: string | URL, filename?: string) {
   // let urlString: string = url instanceof URL ? url.href : url;
   if (typeof url === 'string' && url.startsWith('blob:')) {
     return downloadByUrlLegacy(url);
@@ -115,3 +112,5 @@ export default async function downloadByUrl(
   const { blob, filename: blobName } = await getBlobByUrl(url, !filename);
   return saveBlob(blob, filename || blobName);
 }
+export { downloadByUrl, saveBlob, downloadByUrlLegacy, getBlobByUrl };
+export default downloadByUrl;
